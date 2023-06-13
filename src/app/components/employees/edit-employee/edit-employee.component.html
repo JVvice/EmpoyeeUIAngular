@@ -1,0 +1,77 @@
+<div class="container my-5">
+    <h1 class="mb-3">Edit Employee</h1>
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm" (ngSubmit)="updateEmployee()">
+                <div class="mb-3">
+                    <label for="id" class="form-label">Id</label>
+                    <input type="text" class="form-control" id="id" readonly
+                    name="id" [(ngModel)]="empDetails.id">
+                  </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" 
+                    name="name" [(ngModel)]="empDetails.name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email"
+                    name="email" [(ngModel)]="empDetails.email" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="number" class="form-control" id="phone"
+                    name="phone" [(ngModel)]="empDetails.phone" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="salary" class="form-label">Salary</label>
+                    <input type="number" class="form-control" id="salary"
+                    name="salary" [(ngModel)]="empDetails.salary" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="departmentId" class="form-label">Department</label>
+                    <select name="departmentId" id="departmentId" class="form-select" 
+                     [(ngModel)]="empDetails.departmentId">
+                      <option value="1002">Human Resources</option>
+                      <option value="1003">Marketing</option>
+                      <option value="1004">Finance </option>
+                      <option value="1005">Computer and Information</option>
+                      <option value="1006">Product Development</option>
+                      <option value="1008">Operations Management</option>
+                      <option value="1009">Sales</option>
+                      <option value="1010">Business Analytics</option>
+                    </select>
+                  </div>
+            
+                <button type="submit" class="col-3 btn btn-outline-dark btn-lg me-3">Save</button>
+                <button type="button" class="col-3 btn btn-outline-danger btn-lg me-3" 
+                data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    Delete
+                  </button>
+                  
+
+              </form>
+              <div class="modal fade" id="deleteModal" data-bs-backdrop="static"
+               data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteLabel">Are you sure you want to delete {{empDetails.name}}?</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Deleting an employee can not be undone!
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Back</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                      (click)="deleteEmployee(empDetails.id)">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+        </div>
+    </div>
+</div>
+    

@@ -1,0 +1,59 @@
+<div class="row row-cols-1 row-cols-md-3 g-4 my-3 mx-3">
+    <div class="col" *ngFor="let department of departments">
+      <div class="card border-secondary">
+        <div class="card-body">
+          <h5 class="card-title card-header mb-1">{{department.departmentName}} |
+             Department {{department.departmentId}}</h5>
+          <p class="card-text">{{department.description}}</p>
+          <button type="button" class="btn btn-dark" (click)="setSelectedDepartment(department)"
+           data-bs-toggle="modal" data-bs-target="#employeeModal">
+            See Employees
+          </button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="employeeModalLabel">{{sDepartment?.departmentName}} Employees </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Salary</th>
+                    <th>Department Id</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let employee of sDepartment?.employees">
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.phone }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{employee.departmentId}}</td>
+                    <td>
+                        <button class="btn btn-dark" data-bs-dismiss="modal" [routerLink]="['/employees', 'edit',
+                        employee.id ]">Edit/View
+                        </button>
+                      </td>
+                  </tr>
+        
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
